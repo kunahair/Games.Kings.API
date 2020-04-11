@@ -63,7 +63,6 @@ func PostNewGame(games *memory.Games) gin.HandlerFunc {
 			roomIdAssigned = true
 		}
 
-
 		cardService, err := cardapiservice.NewCardApiService()
 		if err != nil {
 			JsonMessageWithStatus(c, http.StatusInternalServerError, "Unable to start game")
@@ -77,12 +76,13 @@ func PostNewGame(games *memory.Games) gin.HandlerFunc {
 		}
 
 		newGame := memory.GameEngine{
-			RoomId: roomId,
-			DeckId: newDeckId,
+			RoomId:  roomId,
+			DeckId:  newDeckId,
 			Players: []memory.Player{},
-			State:  memory.GameState{
+			State: memory.GameState{
 				CurrentCard:    memory.KingsCard{},
 				RemainingKings: 4,
+				RemainingCards: 52,
 			},
 		}
 
@@ -134,7 +134,7 @@ func PostAddPlayer(games *memory.Games) gin.HandlerFunc {
 
 		//Add Player to Game
 		game.AddPlayer(memory.Player{
-			Name: model.Name,
+			Name:  model.Name,
 			Cards: []memory.KingsCard{},
 		})
 
@@ -181,7 +181,7 @@ func PostPlayerDrawCard(games *memory.Games, rules memory.RulesTopLevel) gin.Han
 		//Find Player in Game
 		var player memory.Player
 		playerFound := false
-		for _, val := range game.Players{
+		for _, val := range game.Players {
 			if val.Name == model.Name {
 				player = val
 				playerFound = true
@@ -213,8 +213,11 @@ func PostPlayerDrawCard(games *memory.Games, rules memory.RulesTopLevel) gin.Han
 
 		kingsCard := memory.InitKingsCard(card, rules)
 
+		//Set new number of cards remaining
+		game.State.RemainingCards -= 1
+
 		//If there is a King, decrement
-		if strings.Contains(kingsCard.Card.Code, "K"){
+		if strings.Contains(kingsCard.Card.Code, "K") {
 			game.State.RemainingKings--
 		}
 
@@ -231,7 +234,7 @@ func PostPlayerDrawCard(games *memory.Games, rules memory.RulesTopLevel) gin.Han
 		for i := 0; i < len(game.Players); i++ {
 			if game.Players[i].Name == player.Name {
 				//Check if Player is the last
-				if i == len(game.Players) - 1 {
+				if i == len(game.Players)-1 {
 					//Got to Player 1
 					game.State.NextPlayer = game.Players[0].Name
 				} else {

@@ -13,7 +13,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY --from=build /app/main .
-COPY --from=build /app/config.json .
+#COPY --from=build /app/config.json .
 
-EXPOSE 8181
+EXPOSE 8080
 CMD ["/app/main"]

@@ -17,7 +17,7 @@ type cardApiService struct {
 
 func NewCardApiService() (cs ICardApiService, err error) {
 
-	cardService := cardApiService{	}
+	cardService := cardApiService{}
 
 	return cardService, nil
 }
@@ -35,7 +35,7 @@ func (cs cardApiService) NewDeck() (deckId string, err error) {
 	var deck memory.Deck
 	err = decoder.Decode(&deck)
 	if err != nil {
-		return  "", err
+		return "", err
 	}
 
 	if deck.Success == false {
@@ -67,7 +67,8 @@ func (cs cardApiService) DrawCard(deckId string) (memory.Card, error) {
 		return card, errors.New("unable to draw card")
 	}
 
-	return drawCard.Cards[0], nil
+	card = drawCard.Cards[0]
+	card.Image = "http://kings.specialfriends.chat/static/img/" + card.Code + ".png"
+
+	return card, nil
 }
-
-
