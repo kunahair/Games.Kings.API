@@ -24,7 +24,7 @@ func NewCardApiService() (cs ICardApiService, err error) {
 
 func (cs cardApiService) NewDeck() (deckId string, err error) {
 	//Make request to get new DeckID
-	resp, err := http.Get("https://deckofcardsapi.com/api/deck/new/shuffle")
+	resp, err := http.Post("http://cards.specialfriends.chat/api/deck/new/shuffle", "application/json", nil)
 	if err != nil {
 		return "", err
 	}
@@ -49,7 +49,7 @@ func (cs cardApiService) DrawCard(deckId string) (memory.Card, error) {
 
 	var card memory.Card
 
-	resp, err := http.Get("https://deckofcardsapi.com/api/deck/" + deckId + "/draw/?count=1")
+	resp, err := http.Get("http://cards.specialfriends.chat/api/deck/" + deckId + "/draw/?count=1")
 	if err != nil {
 		return card, err
 	}
@@ -68,7 +68,7 @@ func (cs cardApiService) DrawCard(deckId string) (memory.Card, error) {
 	}
 
 	card = drawCard.Cards[0]
-	card.Image = "http://kings.specialfriends.chat/static/img/" + card.Code + ".png"
+	//card.Image = "http://cards.specialfriends.chat/static/img/" + card.Code + ".png"
 
 	return card, nil
 }

@@ -14,8 +14,7 @@ var games memory.Games
 func main() {
 
 	games = memory.Games{
-		Games: []memory.GameEngine{
-		},
+		Games: []memory.GameEngine{},
 	}
 
 	rulesString := getRules()
@@ -24,29 +23,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-
-	//rules := memory.RulesTopLevel{}
-	//err := gonfig.GetConf("./rules.json", &rules)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-
-	//
-	//cardService, err := cardapiservice.NewCardApiService()
-	//
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//
-	//card, err := cardService.DrawCard()
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//
-	//kingsCard := memory.InitKingsCard(card, rules)
-	//
-	//log.Print(kingsCard)
 
 	r := gin.Default()
 	r.Use(cors.Default())
@@ -64,7 +40,6 @@ func main() {
 
 	r.Run(":8080")
 
-
 }
 
 func getRules() string {
@@ -73,223 +48,275 @@ func getRules() string {
   "rules" :[
     {
       "code": "KH",
-      "rule": "KING!!"
+      "rule": "KING!!",
+      "holdable" : false
     },
     {
       "code": "KD",
-      "rule": "KING!!"
+      "rule": "KING!!",
+      "holdable" : false
     },
     {
       "code": "KS",
-      "rule": "KING!!"
+      "rule": "KING!!",
+      "holdable" : false
     },
     {
       "code": "KC",
-      "rule": "KING!!"
+      "rule": "KING!!",
+      "holdable" : false
     },
 
     {
       "code": "QH",
-      "rule": "Thumbs"
+      "rule": "Thumbs",
+      "holdable" : true
     },
     {
       "code": "QD",
-      "rule": "Thumbs"
+      "rule": "Thumbs",
+      "holdable" : true
     },
     {
       "code": "QS",
-      "rule": "Thumbs"
+      "rule": "Thumbs",
+      "holdable" : true
     },
     {
       "code": "QC",
-      "rule": "Thumbs"
+      "rule": "Thumbs",
+      "holdable" : true
     },
 
     {
       "code": "JH",
-      "rule": "Make a Rule"
+      "rule": "Make a Rule",
+      "holdable" : false
     },
     {
       "code": "JD",
-      "rule": "Make a Rule"
+      "rule": "Make a Rule",
+      "holdable" : false
     },
     {
       "code": "JS",
-      "rule": "Make a Rule"
+      "rule": "Make a Rule",
+      "holdable" : false
     },
     {
       "code": "JC",
-      "rule": "Make a Rule"
+      "rule": "Make a Rule",
+      "holdable" : false
     },
 
     {
       "code": "0H",
-      "rule": "Categories"
+      "rule": "Categories",
+      "holdable" : false
     },
     {
       "code": "0D",
-      "rule": "Categories"
+      "rule": "Categories",
+      "holdable" : false
     },
     {
       "code": "0S",
-      "rule": "Categories"
+      "rule": "Categories",
+      "holdable" : false
     },
     {
       "code": "0C",
-      "rule": "Categories"
+      "rule": "Categories",
+      "holdable" : false
     },
 
     {
       "code": "9H",
-      "rule": "Rhymes"
+      "rule": "Rhymes",
+      "holdable" : false
     },
     {
       "code": "9D",
-      "rule": "Rhymes"
+      "rule": "Rhymes",
+      "holdable" : false
     },
     {
       "code": "9S",
-      "rule": "Rhymes"
+      "rule": "Rhymes",
+      "holdable" : false
     },
     {
       "code": "9C",
-      "rule": "Rhymes"
+      "rule": "Rhymes",
+      "holdable" : false
     },
 
     {
       "code": "8H",
-      "rule": "Me and a Mate"
+      "rule": "Me and a Mate",
+      "holdable" : false
     },
     {
       "code": "8D",
-      "rule": "Me and a Mate"
+      "rule": "Me and a Mate",
+      "holdable" : false
     },
     {
       "code": "8S",
-      "rule": "Me and a Mate"
+      "rule": "Me and a Mate",
+      "holdable" : false
     },
     {
       "code": "8C",
-      "rule": "Me and a Mate"
+      "rule": "Me and a Mate",
+      "holdable" : false
     },
 
     {
       "code": "7H",
-      "rule": "Heaven"
+      "rule": "Heaven",
+      "holdable" : true
     },
     {
       "code": "7D",
-      "rule": "Heaven"
+      "rule": "Heaven",
+      "holdable" : true
     },
     {
       "code": "7S",
-      "rule": "Heaven"
+      "rule": "Heaven",
+      "holdable" : true
     },
     {
       "code": "7C",
-      "rule": "Heaven"
+      "rule": "Heaven",
+      "holdable" : true
     },
 
     {
       "code": "6H",
-      "rule": "Boys Drink"
+      "rule": "Boys Drink",
+      "holdable" : false
     },
     {
       "code": "6D",
-      "rule": "Boys Drink"
+      "rule": "Boys Drink",
+      "holdable" : false
     },
     {
       "code": "6S",
-      "rule": "Boys Drink"
+      "rule": "Boys Drink",
+      "holdable" : false
     },
     {
       "code": "6C",
-      "rule": "Boys Drink"
+      "rule": "Boys Drink",
+      "holdable" : false
     },
 
     {
       "code": "5H",
-      "rule": "Social"
+      "rule": "Social",
+      "holdable" : false
     },
     {
       "code": "5D",
-      "rule": "Social"
+      "rule": "Social",
+      "holdable" : false
     },
     {
       "code": "5S",
-      "rule": "Social"
+      "rule": "Social",
+      "holdable" : false
     },
     {
       "code": "5C",
-      "rule": "Social"
+      "rule": "Social",
+      "holdable" : false
     },
 
     {
       "code": "4H",
-      "rule": "Girls Drink"
+      "rule": "Girls Drink",
+      "holdable" : false
     },
     {
       "code": "4D",
-      "rule": "Girls Drink"
+      "rule": "Girls Drink",
+      "holdable" : false
     },
     {
       "code": "4S",
-      "rule": "Girls Drink"
+      "rule": "Girls Drink",
+      "holdable" : false
     },
     {
       "code": "4C",
-      "rule": "Girls Drink"
+      "rule": "Girls Drink",
+      "holdable" : false
     },
 
     {
       "code": "3H",
-      "rule": "You Drink"
+      "rule": "You Drink",
+      "holdable" : false
     },
     {
       "code": "3D",
-      "rule": "You Drink"
+      "rule": "You Drink",
+      "holdable" : false
     },
     {
       "code": "3S",
-      "rule": "You Drink"
+      "rule": "You Drink",
+      "holdable" : false
     },
     {
       "code": "3C",
-      "rule": "You Drink"
+      "rule": "You Drink",
+      "holdable" : false
     },
 
     {
       "code": "2H",
-      "rule": "Nominate a Drink"
+      "rule": "Nominate a Drink",
+      "holdable" : false
     },
     {
       "code": "2D",
-      "rule": "Nominate a Drink"
+      "rule": "Nominate a Drink",
+      "holdable" : false
     },
     {
       "code": "2S",
-      "rule": "Nominate a Drink"
+      "rule": "Nominate a Drink",
+      "holdable" : false
     },
     {
       "code": "2C",
-      "rule": "Nominate a Drink"
+      "rule": "Nominate a Drink",
+      "holdable" : false
     },
 
     {
       "code": "AH",
-      "rule": "Waterfall"
+      "rule": "Waterfall",
+      "holdable" : false
     },
     {
       "code": "AD",
-      "rule": "Waterfall"
+      "rule": "Waterfall",
+      "holdable" : false
     },
     {
       "code": "AS",
-      "rule": "Waterfall"
+      "rule": "Waterfall",
+      "holdable" : false
     },
     {
       "code": "AC",
-      "rule": "Waterfall"
+      "rule": "Waterfall",
+      "holdable" : false
     }
   ]
 }
